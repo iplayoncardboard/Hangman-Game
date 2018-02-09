@@ -5,6 +5,7 @@ let remainingGuesses = 13;
 let numberOfWins = 0;
 let wordArray=[];
 let guessArray=[];
+let playerArray=[];
 
 var wordBlanks = document.getElementById("currentWord");
 var showWins = document.getElementById("wins");
@@ -61,7 +62,9 @@ document.onkeyup =  function(event){
                     //add letter to guessedArray and update UI
                     //decrement guesses by 1 and update UI
                     processsGuess(keyStroke);
-                    // Update                  
+                    // Update the user array and UI
+                    correctGuess(keyStroke);
+                    //check for game end condition
                     
                 }
 
@@ -76,11 +79,6 @@ document.onkeyup =  function(event){
 
         }
     }
-
-
-
-
-
 }
 
 
@@ -117,16 +115,27 @@ function createWordArray(word){
     console.log("Word Array: "+ wordArray);
 }
 
-
+//fills player array with blanks and updates UI
 function populateBlanks(word){
     var blanks= "";
 
     for(i=0; i<word.length; i++){
-        blanks = blanks + "_ "
+        playerArray.push("_");
     }
-    
-    wordBlanks.textContent = blanks;
+    updateCurrentWordUI();
 }
+
+function updateCurrentWordUI(){
+    var str =""
+    //iterate through the array and add each letter to a string
+    for (i=0; i< playerArray.length; i++)
+    {
+        str = str + playerArray[i] + " ";
+    }
+    //output string to UI
+    wordBlanks.textContent = str;
+}
+
 
 function processsGuess(letter){
     //add letter to guessedArray and update UI
@@ -134,4 +143,19 @@ function processsGuess(letter){
     showGuessedLetters.textContent = guessArray.toString();
     remainingGuesses--;
     showRemainingGuesses.textContent=remainingGuesses;
+}
+
+function correctGuess(letter){
+    //check word array for location of correct letter and update player array to reflect. 
+    console.log(letter);
+    
+   for(i=0; i<wordArray.length; i++){
+       console.log(wordArray[i]);
+       if(letter===wordArray[i]){
+           playerArray[i] = letter;
+       }
+   }
+ 
+    updateCurrentWordUI();
+    console.log(playerArray);
 }
