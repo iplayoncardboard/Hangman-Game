@@ -6,6 +6,7 @@ let numberOfWins = 0;
 let wordArray=[];
 let guessArray=[];
 let playerArray=[];
+var selectedWord="";
 
 var wordBlanks = document.getElementById("currentWord");
 var showWins = document.getElementById("wins");
@@ -36,14 +37,14 @@ setInitialGameState();
 //start game
 document.onkeyup =  function(event){
     
-    //Select a word object from the list
-    var selectedWord = getRandomWordObject(wordList, wordList.length);
+      //Select a word object from the list
+        selectedWord = getRandomWordObject(wordList, wordList.length);
     
-    // console.log(selectedWord);
-    createWordArray(selectedWord.word);
-
-    //display the blank spaces
-    populateBlanks(selectedWord.word);
+      // console.log(selectedWord);
+      createWordArray(selectedWord.word);
+  
+      //display the blank spaces
+      populateBlanks(selectedWord.word);
 
     //user guess
     document.onkeyup = function(event){
@@ -65,14 +66,14 @@ document.onkeyup =  function(event){
                     // Update the user array and UI
                     correctGuess(keyStroke);
                     //check for game end condition
-                    
+                    checkEndGame();
                 }
 
                 else{
                     ////add letter to guessedArray and update UI
                     //decrement score by 1 and update UI
                     processsGuess(keyStroke);
-                    
+                    checkEndGame();
                 }
 
             }
@@ -118,7 +119,7 @@ function createWordArray(word){
 //fills player array with blanks and updates UI
 function populateBlanks(word){
     var blanks= "";
-
+    playerArray=[];
     for(i=0; i<word.length; i++){
         playerArray.push("_");
     }
@@ -158,4 +159,42 @@ function correctGuess(letter){
  
     updateCurrentWordUI();
     console.log(playerArray);
+}
+
+function checkEndGame(){
+    //check for win 
+    if(!playerArray.includes("_")){
+        console.log("You Win")
+        numberOfWins++;
+        showWins.textContent=numberOfWins;
+        startNewGame();
+    }
+
+    //check for loss
+    else if(remainingGuesses===0){
+        console.log("End Game");
+        startNewGame();
+    }
+}
+
+function startNewGame(){
+    //reset remaining guesses
+    remainingGuesses= 13;
+    showRemainingGuesses.textContent = remainingGuesses;
+
+    //reset player array
+    playerArray=[]
+    guessArray=[];
+    showGuessedLetters.textContent=guessArray;
+
+    //get a new word
+    selectedWord = getRandomWordObject(wordList, wordList.length);
+    console.log("new selected word: " + selectedWord.word);
+
+    //create word array
+    createWordArray(selectedWord.word);
+
+    //wipe player array and display the blank spaces
+    populateBlanks(selectedWord.word);
+
 }
