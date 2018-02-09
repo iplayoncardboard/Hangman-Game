@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>D&AMP;D Hangman</title>
+    <link type="text/css" rel="stylesheet" href="./assets/css/reset.css">
+    <link type="text/css" rel="stylesheet" href="./assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative:400,700" rel="stylesheet">
+
+</head>
+    <body>
+        <div class="container">
+            <h1>Xanathar's Guide to Hanging Men</h1>
+            <div id="col1">
+                <img id="gameImage" src="./assets/images/xanathar.jpg" alt="Xanathar">
+            </div>
+            <div id="col2">
+               
+                <p>You have bested Xanathar <span id="wins"></span> times</p>
+                <h4>Current Word</h4>
+                <br>
+                <h3 id="currentWord">Press Any Ket to face me!</h3>
+                
+            <br>
+                <h4>Number of Guesses Remaining</h4>
+                <h4 id="remainingGuesses"></h4>
+                <p>Letters you have guessed</p>
+                <p id="guessedLetters"></p>
+
+            </div>
+
+        </div>
+
+
+        <script src="./assets/javascript/game.js"></script>
+    </body>
+</html>

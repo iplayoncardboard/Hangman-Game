@@ -1,0 +1,137 @@
+
+const imagePath = "./assets/images/";
+const soundPath = "./assets/sounds/";
+let remainingGuesses = 13;
+let numberOfWins = 0;
+let wordArray=[];
+let guessArray=[];
+
+var wordBlanks = document.getElementById("currentWord");
+var showWins = document.getElementById("wins");
+var showRemainingGuesses = document.getElementById("remainingGuesses");
+var showGuessedLetters = document.getElementById("guessedLetters");
+
+let wordList = [
+    {
+        word: "Xanathar",
+        imageUrl: "xanathar.jpg",
+        soundUrl: "xanathar.mp3"
+    },
+    {
+        word: "Beholder",
+        imageUrl: "beholder.jpg",
+        soundUrl: "beholder.mp3"
+    },
+    {
+        word: "Mordenkainen",
+        imageUrl: "Mordenkainen.jpg",
+        soundUrl: "Mordenkainen.mp3"
+    }
+];
+
+
+
+setInitialGameState();
+//start game
+document.onkeyup =  function(event){
+    
+    //Select a word object from the list
+    var selectedWord = getRandomWordObject(wordList, wordList.length);
+    
+    // console.log(selectedWord);
+    createWordArray(selectedWord.word);
+
+    //display the blank spaces
+    populateBlanks(selectedWord.word);
+
+    //user guess
+    document.onkeyup = function(event){
+        //check that the key is an upper or lowercase letter
+        if(event.keyCode >= 65 && event.keyCode <= 90 || event.keyCode >= 97 && event.keyCode <= 122){
+            // console.log(event.key);
+
+            // make key lowercase and set to a var
+            var keyStroke = event.key.toLowerCase();
+           
+            //check to see if key has already been pressed
+            if(!guessArray.includes(keyStroke)){
+                
+                //Check to see if the key's letter is in the array
+                if(wordArray.includes(keyStroke)){
+                    //add letter to guessedArray and update UI
+                    //decrement guesses by 1 and update UI
+                    processsGuess(keyStroke);
+                    // Update                  
+                    
+                }
+
+                else{
+                    ////add letter to guessedArray and update UI
+                    //decrement score by 1 and update UI
+                    processsGuess(keyStroke);
+                    
+                }
+
+            }
+
+        }
+    }
+
+
+
+
+
+}
+
+
+//set game state
+function setInitialGameState(){
+    showWins.textContent = numberOfWins;
+    showRemainingGuesses.textContent = remainingGuesses;
+}
+
+
+function getRandomWordObject(array, length){
+
+
+    var temp = array[Math.floor( Math.random() * Math.floor(length))];
+
+    // console.log("Function is outputting= " + temp);
+    return temp;
+}
+
+//Creates word array
+function createWordArray(word){
+    //empty word array
+    wordArray=[];
+    //convert word to lowercase
+    word = word.toLowerCase();
+    //create word array
+    for(i=0; i < word.length; i++){
+
+        //get the ith letter of the word and push it to the word array
+        wordArray.push(word.charAt(i));
+        
+    }
+    console.log("word length: " + word.length);
+    console.log("Word Array: "+ wordArray);
+}
+
+
+function populateBlanks(word){
+    var blanks= "";
+
+    for(i=0; i<word.length; i++){
+        blanks = blanks + "_ "
+    }
+    
+    wordBlanks.textContent = blanks;
+}
+
+function processsGuess(letter){
+    //add letter to guessedArray and update UI
+    guessArray.push(letter);
+    showGuessedLetters.textContent = guessArray.toString();
+    remainingGuesses--;
+    showRemainingGuesses.textContent=remainingGuesses;
+}

@@ -1,0 +1,43 @@
+
+body{
+    background-image: url(../images/ricepaper_v3.png);
+    font-family: 'Cinzel Decorative', cursive;
+}
+
+
+h3, h4, p{text-align: center;}
+
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin:0px 200px;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+
+.container h1{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    text-align: center;
+    color:red;
+    font-size: 2em;
+    font-weight: 900;
+    padding: 20px;
+    justify-self: center;
+}
+
+#gameImage {
+    width: 400px;
+    height: 400px;
+  
+}
+
+#col1{
+    background:paleturquoise;
+}
+
+#col2{
+    background: peru;
+    padding: 20px;
+}
