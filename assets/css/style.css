@@ -30,7 +30,8 @@ h3, h4, p{text-align: center;}
 #gameImage {
     width: 400px;
     height: 400px;
-  
+    margin: auto;
+    display: block;
 }
 
 #col1{
@@ -40,4 +41,5 @@ h3, h4, p{text-align: center;}
 #col2{
     background: peru;
     padding: 20px;
+    
 }
