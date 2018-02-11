@@ -2,10 +2,10 @@
 | Layout and Style Ideas                                       |
 ################################################################
 
-Title Xanathar's guide to hanging men
-Sweet beholder picture
-Parchment background
-Fantasy or old english font
+[X]Title Xanathar's guide to hanging men
+[]Sweet beholder picture
+[x]Parchment background
+[x]Fantasy or old english font
 
 
 
@@ -14,27 +14,27 @@ Fantasy or old english font
 ################################################################
 
 Things to track:
-*Number of guesses remaining
-*Letters already guessed
-* array of words
-*Number of correct letters
-*Number of Wins
+[x]*Number of guesses remaining
+[x]*Letters already guessed
+[x]* Array of words
+[x]*Number of correct letters
+[x]*Number of Wins
 
 Basic functionality happy path
 
-* Press any key to start 
-    * Reset guesses to 13
-    *Show Current number of wins for the session
-* Randomly select a word from the array
-* Display the appropriate number of blanks _ equal to length of word
-* When key is pressed check if letter has been guessed
+* [X]Press any key to start 
+    [x]* Reset guesses to 13
+    [x]*Show Current number of wins for the session
+[x]* Randomly select a word from the array
+[x]* Display the appropriate number of blanks _ equal to length of word
+[x]* When key is pressed check if letter has been guessed
     If YES do not decrement remaining guesses
     If NO decrement remaining guesses by 1 and check to see if letter is in the word. (If it is in the word replace _ with all instances of the letter) add the letter to the list of guessed letters
-* Check for win/loss conditions
-    Check if the number of correct letters is equal to the lenght of the string
+[x]* Check for win/loss conditions
+ x[]   Check if the number of correct letters is equal to the lenght of the string
         If YES you win, increment the number of wins
         If NO, check remaining guesses
-    If Remaining guesses = 0
+ [x]   If Remaining guesses = 0
         Game over
             Reset guesses to 13
             grab a new word from the list

@@ -1,18 +1,34 @@
 
 body{
-    background-image: url(../images/ricepaper_v3.png);
+    background-image: url(../images/page-background.jpg);
     font-family: 'Cinzel Decorative', cursive;
 }
 
 
-h3, h4, p{text-align: center;}
+h3, h4, p{
+    text-align: center;
+    line-height: 1.5;
+}
 
+.gameInfo, span{
+    font-weight: 900;
+    font-size: 1.6em;
+    color: #680003;
+
+}
+
+.infoHeading{
+    font-weight: 600;
+    font-size: 1.2em;
+    color: #CC161B;
+}
 
 .container{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
     margin:0px 200px;
     grid-auto-rows: minmax(100px, auto);
+    
 }
 
 
@@ -20,11 +36,14 @@ h3, h4, p{text-align: center;}
     grid-column-start: 1;
     grid-column-end: 3;
     text-align: center;
-    color:red;
-    font-size: 2em;
+    color:#9D0A0E;
+    font-size: 5em;
     font-weight: 900;
     padding: 20px;
     justify-self: center;
+    background: linear-gradient(to bottom, #680003 0%, #CC161B 100%);
+    -webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 #gameImage {
@@ -35,11 +54,11 @@ h3, h4, p{text-align: center;}
 }
 
 #col1{
-    background:paleturquoise;
+    padding: 20px 0px;
 }
 
 #col2{
-    background: peru;
-    padding: 20px;
+    border: 1px solid #F5383D;
+    padding: 20px 0px;
     
 }

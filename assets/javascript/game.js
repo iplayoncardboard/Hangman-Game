@@ -6,12 +6,16 @@ let numberOfWins = 0;
 let wordArray=[];
 let guessArray=[];
 let playerArray=[];
-var selectedWord="";
+var selectedWord;
 
 var wordBlanks = document.getElementById("currentWord");
 var showWins = document.getElementById("wins");
 var showRemainingGuesses = document.getElementById("remainingGuesses");
 var showGuessedLetters = document.getElementById("guessedLetters");
+var imageUrl = document.getElementById("gameImage");
+
+var audio = new Audio('./assets/sounds/beholder.mp3');
+
 
 let wordList = [
     {
@@ -26,9 +30,30 @@ let wordList = [
     },
     {
         word: "Mordenkainen",
-        imageUrl: "Mordenkainen.jpg",
-        soundUrl: "Mordenkainen.mp3"
+        imageUrl: "mordenkainen.jpeg",
+        soundUrl: "mordenkainen.mp3"
+    },
+    {
+        word:"StrahdvonZarovich",
+        imageUrl: "strahd.jpg",
+        soundUrl: "strahd.mp3"
+    },
+    {
+        word:"Asmodeus",
+        imageUrl: "asmodeus.jpg",
+        soundUrl: "asmodeus.mp3"
+    },
+    {
+        word:"Fireball",
+        imageUrl: "fireball.jpg",
+        soundUrl: "fireball.mp3"
+    },
+    {
+        word:"Wulfgar",
+        imageUrl: "wulfgar.png",
+        soundUrl: "wulfgar.mp3"
     }
+
 ];
 
 
@@ -36,7 +61,7 @@ let wordList = [
 setInitialGameState();
 //start game
 document.onkeyup =  function(event){
-    
+    audio.play();
       //Select a word object from the list
         selectedWord = getRandomWordObject(wordList, wordList.length);
     
@@ -151,7 +176,7 @@ function correctGuess(letter){
     console.log(letter);
     
    for(i=0; i<wordArray.length; i++){
-       console.log(wordArray[i]);
+    //    console.log(wordArray[i]);
        if(letter===wordArray[i]){
            playerArray[i] = letter;
        }
@@ -167,6 +192,9 @@ function checkEndGame(){
         console.log("You Win")
         numberOfWins++;
         showWins.textContent=numberOfWins;
+        imageUrl.attributes.src.nodeValue = imagePath + selectedWord.imageUrl;
+        audio.src= soundPath+selectedWord.soundUrl;
+        audio.play();
         startNewGame();
     }
 
